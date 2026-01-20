@@ -4,6 +4,7 @@ import {errorHandler} from "./middlewares/error-handler";
 import {notFoundHandler} from "./middlewares/not-found";
 import {requestIdMiddleware} from "./middlewares/request-id";
 import {helloApi} from "./api/hello.api";
+import { serveStatic } from "hono/serve-static";
 
 const app = new Hono<{ Bindings: Env }>();
 
@@ -19,6 +20,14 @@ app.use('*', cors({
 // ✅ 必须兜底 OPTIONS（非常关键）
 app.options('*', c => new Response(null, { status: 204 }));
 
+// 前端静态资源
+app.use('/*', serveStatic({ 
+  root: './public',
+  getContent: async (path, c) => {
+    // 简单实现：直接返回文件内容或 null
+    return null;
+  }
+}))
 
 // 全局异常捕获
 app.onError(errorHandler)
