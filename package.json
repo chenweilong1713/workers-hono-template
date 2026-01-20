@@ -4,6 +4,7 @@
 	"scripts": {
 		"dev": "concurrently \"wrangler dev --local\" \"npm run dev --prefix web\"",
 		"deploy": "wrangler deploy --minify",
+		"build": "npm run build --prefix web",
 		"cf-typegen": "wrangler types --env-interface CloudflareBindings"
 	},
 	"dependencies": {
