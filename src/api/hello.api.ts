@@ -7,5 +7,5 @@ export const helloApi = new Hono<{ Bindings: Env }>();
 
 
 helloApi.get("/", async (c) => {
-    return Result.ok(c,"Hello World")
+    return Result.ok(c,"Hello World cwl")
 })
